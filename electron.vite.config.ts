@@ -4,7 +4,19 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin({ exclude: ['node-fetch'] })],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node-fetch')) {
+              return 'node-fetch'
+            }
+            return undefined
+          }
+        }
+      }
+    }
   },
   preload: {
     plugins: [externalizeDepsPlugin()]

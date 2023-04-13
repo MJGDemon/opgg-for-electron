@@ -1,7 +1,9 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { getChampionRankList } from './api'
+import { GetChampionRankListParams } from 'championRankList'
 
 function createWindow(): void {
   // Create the browser window.
@@ -41,6 +43,10 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+
+  ipcMain.handle('getChampionRankList', (event, params: GetChampionRankListParams) => {
+    return getChampionRankList(params)
+  })
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
