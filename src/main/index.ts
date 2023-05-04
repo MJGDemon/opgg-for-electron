@@ -45,6 +45,7 @@ app.whenReady().then(() => {
   electronApp.setAppUserModelId('com.electron')
 
   ipcMain.handle('getChampionRankList', (event, params: GetChampionRankListParams) => {
+    console.log(event)
     return getChampionRankList(params)
   })
 
