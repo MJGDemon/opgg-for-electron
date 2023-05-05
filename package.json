@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "悠星网络",
   "license": "MIT",
   "homepage": "https://www.electronjs.org",
   "scripts": {
